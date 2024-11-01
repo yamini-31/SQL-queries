@@ -49,16 +49,21 @@ WHERE
     manager_id IS NULL;
 
 Query 5
-delimiter //
-create function get_ful_name(emp_id int)
-returns varchar(200)
-deterministic
-return (
+DELIMITER //
 
-select concat(first_name ,' ' ,last_name) 
-from employee where emp_id=emp_id
-);
+CREATE FUNCTION get_full_name(input_emp_id INT)
+RETURNS VARCHAR(200)
+DETERMINISTIC
+BEGIN
+    DECLARE full_name VARCHAR(200);
+    
+    SELECT CONCAT(first_name, ' ', last_name) 
+    INTO full_name
+    FROM employee_info
+    WHERE emp_id = input_emp_id;
 
-//
-delimiter ;
-select get_ful_name(2) as fn;
+    RETURN full_name;
+END //
+
+DELIMITER ;
+
