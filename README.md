@@ -1,4 +1,4 @@
-Name= Yamini Singh Email-id= Yamini. Singh@fidelity.co.in
+Name= Yamini Singh Email-id= Yamini.Singh@fidelity.co.in
 # SQL-queries
 ![image](https://github.com/user-attachments/assets/c9bad72e-4f32-4164-bea4-8a195b3b5ffb)
 ## query 1
