@@ -66,5 +66,7 @@ BEGIN
 END //
 
 DELIMITER ;
+SELECT get_full_name(2) AS fn;  
+
 
 
