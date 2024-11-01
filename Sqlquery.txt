@@ -1,0 +1,64 @@
+Query 1
+SELECT 
+    m.manager_id,
+    m.first_name AS manager_first_name,
+    m.last_name AS manager_last_name,
+    e.emp_id,
+    e.first_name AS employee_first_name,
+    e.last_name AS employee_last_name
+FROM 
+    manager_info m
+LEFT JOIN 
+    employee_info e ON m.manager_id = e.manager_id
+ORDER BY 
+    m.manager_id;
+
+
+Query 2
+SELECT 
+	COUNT(e.emp_id) AS number_of_employees
+FROM 
+    manager_info m
+JOIN 
+    employee_info e ON m.manager_id = e.manager_id
+WHERE 
+    m.first_name = 'Pooja' AND m.last_name = 'Verma';
+
+Query 3
+SELECT 
+    m.first_name AS manager_first_name,
+    m.last_name AS manager_last_name,
+    COUNT(e.emp_id) AS employee_count
+FROM 
+    manager_info m
+LEFT JOIN 
+    employee_info e ON m.manager_id = e.manager_id
+WHERE 
+    m.first_name = 'Pooja' AND m.last_name = 'Verma'
+GROUP BY 
+    m.manager_id, m.first_name, m.last_name;
+
+Query 4
+SELECT 
+    emp_id,
+    first_name,
+    last_name
+FROM 
+    employee_info
+WHERE 
+    manager_id IS NULL;
+
+Query 5
+delimiter //
+create function get_ful_name(emp_id int)
+returns varchar(200)
+deterministic
+return (
+
+select concat(first_name ,' ' ,last_name) 
+from employee where emp_id=emp_id
+);
+
+//
+delimiter ;
+select get_ful_name(2) as fn;
